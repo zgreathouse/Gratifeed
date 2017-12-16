@@ -24,7 +24,7 @@ passport.use(
       proxy: true
     },
     async (accessToken, refreshToken, profile, done) => {
-      const existingUser = await User.findOne({ googleId: profile.id });
+      const existingUser = await User.findOne({ googleID: profile.id });
 
       //sign in
       if (existingUser) {
@@ -32,7 +32,7 @@ passport.use(
       }
 
       //sign up
-      const user = await new User({ googleId: profile.id}).save();
+      const user = await new User({ googleID: profile.id}).save();
       done(null, user);
     }
   )
