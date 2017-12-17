@@ -1,6 +1,7 @@
 const passport = require('passport');
 
 module.exports = app => {
+  //route to google (OAuth) sign in/sign up
   app.get(
     '/auth/google',
     passport.authenticate('google', {
@@ -8,6 +9,8 @@ module.exports = app => {
     })
   );
 
+  //route to url which comes directly after OAuth login
+  //(required when using the google+ OAuth API)
   app.get(
     '/auth/google/callback',
     passport.authenticate('google'),
@@ -16,7 +19,7 @@ module.exports = app => {
     }
   );
 
-  // get the current user
+  //get the current user
   app.get('/api/current_user', (req, res) => {
     res.send(req.user);
   });

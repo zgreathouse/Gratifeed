@@ -5,14 +5,17 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 const keys = require('./config/keys');
 
+//class Models
 require('./models/User');
 require('./models/Survey');
+//services
 require('./services/passport');
 
 mongoose.connect(keys.mongoURI, {
   useMongoClient: true
 });
 
+//create constant 'app' to act as a instance of express running
 const app = express();
 
 //middlewares
