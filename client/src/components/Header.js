@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+//components
 import Payments from './Payments';
 
 class Header extends Component {
 
   renderContent() {
+    /*switch statement on what value is being returned when
+    fetching the current user */
     switch (this.props.auth) {
       case null:
         return;
