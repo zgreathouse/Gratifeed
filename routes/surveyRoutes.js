@@ -8,7 +8,7 @@ const Survey = mongoose.model('surveys');
 
 module.exports = app => {
   //route to create a new survey
-  app.post('/api/surveys', requireLogin, requireCredits, (req, res) => {
+  app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => {
     const { title, subject, body, recipients } = req.body;
 
     const survey = new Survey({
@@ -20,7 +20,18 @@ module.exports = app => {
       dateSent: Date.now()
     });
 
-    const mailer = new Mailer(survey, surveyTemplate(survey));
+    const mailer = new Mailer(survey, surveyTemplate(survey)); //create Mailer object
+
+    try {
+      await mailer.send(); //send email(s)
+      await survey.save(); //save survey to database
+      req.user.credits -= 1; //minus one credit (user pays for survey)
+      const user = await req.user.save(); //save user to database with updated credits
+
+      res.send(user); //serve up the updated user
+    } catch (err) {
+      res.status(422).send(err);
+    }
   });
 
   //return a list of surveys
