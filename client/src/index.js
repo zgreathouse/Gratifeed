@@ -17,7 +17,9 @@ window.axios = axios;
 the initial state, and the reduxThunk middleware */
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
-
+/* Provider component wraps the root component and passes down the store
+through the store property. Provider component is then dropped into the
+html document and set inside the elemt with an id of 'root'*/
 ReactDOM.render(
   <Provider store={store}><App /></Provider>,
   document.querySelector('#root')
