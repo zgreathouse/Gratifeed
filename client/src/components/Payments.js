@@ -1,3 +1,4 @@
+// Payments is the stripe checkout form component
 import React, { Component } from 'react';
 import StripeCheckout from 'react-stripe-checkout'; //stripe checkout form
 import { connect } from 'react-redux';

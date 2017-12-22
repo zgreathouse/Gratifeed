@@ -17,6 +17,8 @@ const FIELDS = [
 
 class SurveyForm extends Component {
   renderFields() {
+    // map over fields array and produce a Field tag with the respective
+    // prop values
     return _.map(FIELDS, ({ label, name }) => {
       return <Field key={name} component={SurveyField} type="text" label={label} name={name} />
     })
@@ -43,6 +45,8 @@ class SurveyForm extends Component {
   }
 }
 
+//This validate function is passd to redux form for input validations
+//on the form
 function validate(values) {
   const errors = {};
 

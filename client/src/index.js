@@ -9,17 +9,17 @@ import reduxThunk from 'redux-thunk';
 import App from './components/App';
 import reducers from './reducers';
 
-//for testing:
+//for testing backend api:
 import axios from 'axios';
 window.axios = axios;
 
-/*create redux store with reducers/index.js, an empty object as
-the initial state, and the reduxThunk middleware */
+//create redux store with reducers/index.js, an empty object as
+//the initial state, and the reduxThunk middleware 
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
-/* Provider component wraps the root component and passes down the store
-through the store property. Provider component is then dropped into the
-html document and set inside the elemt with an id of 'root'*/
+//Provider component wraps the root component and passes down the store
+//through the store property. Provider component is then dropped into the
+//html document and set inside the elemt with an id of 'root'
 ReactDOM.render(
   <Provider store={store}><App /></Provider>,
   document.querySelector('#root')

@@ -1,3 +1,4 @@
+// Landing is the main component of the landing page
 import React from 'react';
 
 const Landing = () => {

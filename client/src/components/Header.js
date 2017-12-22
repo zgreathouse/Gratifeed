@@ -1,3 +1,5 @@
+/* Header is the nav bar component which houses different components
+  based on whether or not you're signed in */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';

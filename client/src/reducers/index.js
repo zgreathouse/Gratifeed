@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
+
 //reducers
-import { reducer as reduxForm } from 'redux-form'; //reducer is imported from redux-form npm module
 import authReducer from './authReducer';
+import { reducer as reduxForm } from 'redux-form'; //a special reducer to handle the redux form slice of state
 
 export default combineReducers({
   auth: authReducer,
   form: reduxForm
-})
+});
