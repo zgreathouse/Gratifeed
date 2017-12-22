@@ -43,6 +43,9 @@ module.exports = app => {
   //return a list of surveys
   // app.get('/api/surveys', (req, res) => {});
 
-  //Record feedback from a user who has completed a survey
-  // app.post('/api/surveys/webhooks', (req, res) => {});
+  // route to process a list of user clicks from the last 30 seconds
+  app.post('/api/surveys/webhooks', (req, res) => {
+    console.log(req.body);
+    res.send({});
+  });
 };
