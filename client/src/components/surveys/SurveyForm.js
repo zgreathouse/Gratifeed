@@ -37,12 +37,12 @@ class SurveyForm extends Component {
   }
 }
 
-//This validate function is passd to redux form for input validations
+//This validate function is passed to redux form for input validations
 //on the form
 function validate(values) {
   const errors = {};
 
-  errors.emails = validateEmails(values.emails || '');
+  errors.recipients = validateEmails(values.recipients || '');
 
   _.each(formFields, ({ name, noValueError }) => {
     if (!values[name]) {
