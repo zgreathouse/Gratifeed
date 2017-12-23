@@ -11,10 +11,6 @@ const Survey = mongoose.model('surveys');
 
 module.exports = app => {
 
-  app.get('/api/surveys/thanks', (req, res) => {
-    res.send('Thanks for you feedback!');
-  });
-
   //route to create a new survey
   app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => {
     const { title, subject, body, recipients } = req.body;
@@ -46,6 +42,10 @@ module.exports = app => {
   //return a list of surveys
   // app.get('/api/surveys', (req, res) => {});
 
+  app.get('/api/surveys/:surveyId/:choice', (req, res) => {
+    res.send('Thanks for you feedback!');
+  });
+
   // route to process a list of user clicks from the last 30 seconds
   // update the 'yes' or 'no' value and the responded value
   app.post('/api/surveys/webhooks', (req, res) => {
@@ -70,7 +70,8 @@ module.exports = app => {
           },
           {
             $inc: { [choice]: 1 },
-            $set: { 'recipients.$.responded': true }
+            $set: { 'recipients.$.responded': true },
+            lastResponded: new Date()
           }
         ).exec();
       })
