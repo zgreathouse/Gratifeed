@@ -47,10 +47,11 @@ module.exports = app => {
   // app.get('/api/surveys', (req, res) => {});
 
   // route to process a list of user clicks from the last 30 seconds
+  // update the 'yes' or 'no' value and the responded value
   app.post('/api/surveys/webhooks', (req, res) => {
     const p = new Path('/api/surveys/:surveyId/:choice');
 
-    const events = _.chain(req.body)
+    _.chain(req.body)
       .map(({ email, url }) => {
         const match = p.test(new URL(url).pathname);
         if (match) {
@@ -59,9 +60,22 @@ module.exports = app => {
       })
       .compact()
       .uniqBy('email', 'surveyId')
+      .each( ({ surveyId, email, choice }) => {
+        Survey.updateOne(
+          {
+            _id: surveyId,
+            recipients: {
+              $elemMatch: { email: email, responded: false }
+            }
+          },
+          {
+            $inc: { [choice]: 1 },
+            $set: { 'recipients.$.responded': true }
+          }
+        ).exec();
+      })
       .value();
 
-    console.log(events);
     res.send({});
   });
 };
