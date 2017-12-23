@@ -13,7 +13,10 @@ module.exports = app => {
 
   //return a list of all the surveys that the current user has created
   app.get('/api/surveys', requireLogin, async (req, res) => {
-    const surveys = await Survey.find({ _user: req.user.id });
+    const surveys = await Survey.find({ _user: req.user.id }).select({
+      recipients: false
+    });
+
     res.send(surveys);
   });
 
