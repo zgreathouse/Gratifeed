@@ -10,6 +10,12 @@ class SurveyList extends Component {
   renderSurveys() {
     const { surveys } = this.props;
 
+    if (!surveys) {
+      return (
+        <h3>You have not created any surveys yet</h3>
+      )
+    }
+
     return surveys.reverse().map( survey => {
       return (
         <div className="card darken-1" key={survey.title}>
