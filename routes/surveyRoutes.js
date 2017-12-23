@@ -11,6 +11,12 @@ const Survey = mongoose.model('surveys');
 
 module.exports = app => {
 
+  //return a list of all the surveys that the current user has created
+  app.get('/api/surveys', requireLogin, async (req, res) => {
+    const surveys = await Survey.find({ _user: req.user.id });
+    res.send(surveys);
+  });
+
   //route to create a new survey
   app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => {
     const { title, subject, body, recipients } = req.body;
@@ -38,9 +44,6 @@ module.exports = app => {
       res.status(422).send(err);
     }
   });
-
-  //return a list of surveys
-  // app.get('/api/surveys', (req, res) => {});
 
   app.get('/api/surveys/:surveyId/:choice', (req, res) => {
     res.send('Thanks for you feedback!');
