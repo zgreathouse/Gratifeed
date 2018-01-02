@@ -9,18 +9,20 @@ const Landing = () => {
       </h1>
       Collect feedback from your users
       <div className="bottom-right">
-        <button
+        <a
           href="https://www.linkedin.com/in/zachary-greathouse-11345813b/"
-          className="grey right white-text"
+          className="right grey-text"
+          style={{ margin: '0 10px'}}
         >
           Linkedin
-        </button>
-        <button
+        </a>
+        <a
           href="https://github.com/zgreathouse/Gratifeed"
-          className="grey right white-text"
+          className="right grey-text"
+          style={{ margin: '0 10px'}}
         >
           Github
-        </button>
+        </a>
       </div>
     </div>
   );
