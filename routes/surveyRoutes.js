@@ -54,6 +54,7 @@ module.exports = app => {
 
   // route to process a list of user clicks from the last 30 seconds
   // update the 'yes' or 'no' value and the responded value
+  // the mailer takes a few minutes to update
   app.post('/api/surveys/webhooks', (req, res) => {
     const p = new Path('/api/surveys/:surveyId/:choice');
 
