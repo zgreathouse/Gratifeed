@@ -9,7 +9,3 @@ Note: I intend to add further styling to this application.
 
 App was created with the help of the following tutorial made by Stephen Grider:
 https://www.udemy.com/node-with-react-fullstack-web-development/learn/v4/overview
-
-
-
->>>>>>> ec24ea91f62f5333ab357da2d6067b57319efa07
